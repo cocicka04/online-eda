@@ -1,4 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
+from django.shortcuts import render
+
+
 
 def index(request):
  return HttpResponse("<h2>Глaвнaя</h2>")
@@ -28,3 +31,6 @@ def contact(request):
 
 def details(request):
  return HttpResponsePermanentRedirect("/")
+
+def index(request):
+ return render(request, "firstapp/index.html")

@@ -17,17 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import re_path
 from firstapp import views
+from django.views.generic import TemplateView
 
 urlpatterns = [
-
- path ('', views. index),
- path ('products/', views.products), # маршрут по умолчанию
- path ('products/<int:productid>/', views.products),
- path ('users/', views.users), # маршрут по умолчанию
- path ('users/<int:id>/<str:name>/', views.users),
- path ('details/', views.details),
- path('About/', views.about),
- path('contact/', views.contact),
+ path('', views.index),
+ path('about/', TemplateView.as_view(template_name="firstapp/about.html")),
+ path('contact/', TemplateView.as_view(template_name="firstapp/contact.html",
+    extra_context={"work": "Разработка программных продуктов"})),
 ]
+
 
 
