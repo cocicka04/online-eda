@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.shortcuts import render
+from django.http import *
 
 
 
@@ -31,5 +32,10 @@ def contact(request):
 
 def details(request):
  return HttpResponsePermanentRedirect("/")
+
 def index(request):
  return render(request, "firstapp/index.html")
+
+def index(request):
+ cat = ["Хлеб", "Булочка", "Пампушка", "Сдоба", "Ромбаба"]
+ return render(request, "firstapp/index.html", context={"cat": cat})
