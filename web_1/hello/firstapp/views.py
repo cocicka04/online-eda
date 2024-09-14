@@ -31,6 +31,5 @@ def contact(request):
 
 def details(request):
  return HttpResponsePermanentRedirect("/")
-
 def index(request):
  return render(request, "firstapp/index.html")
