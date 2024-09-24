@@ -1,0 +1,99 @@
+
+
+body {
+  font-family: 'Roboto', sans-serif; 
+  color: #ffce56; 
+  background-image: url("brickwall.jpg"); 
+  background-size: cover; /*заполнить весь фон */
+  background-repeat: no-repeat; 
+  background-attachment: fixed; /* фон фиксируется при прокрутке */
+}
+
+.container {
+  
+  background-color: #333; 
+  padding: 30px;
+  margin-top: 10px;
+  border-radius: 8px; /*скругленныеуголки*/
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* заметная тень */
+}
+
+h1 {/*заголовок*/
+  font-size: 3em; 
+  font-weight: 900; /*жирный шрифт*/
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /*текстовая тень*/
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+h2 {/*заголовок*/
+  font-size: 2em; 
+  font-weight: 700; /*жирный шрифт*/
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /*текстовая тень*/
+  text-align: start;
+  margin-bottom: 15px;
+}
+
+
+p {/*текстподпиццамибургерами*/
+  font-size: 1.2em; 
+  font-weight: 500; /*нежир*/
+  line-height: 1.5; /*интервал */
+}
+
+a {
+  color: #f5d765; 
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #ffce56; 
+}
+
+.btn-primary {
+  background-color: #f5d765; 
+  border-color: #f5d765;
+  font-weight: bold; 
+  border-radius: 30px; /* углы */
+  padding: 20px 50px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #ffce56; 
+  border-color: #ffce56;
+}
+
+.text-center h2 {
+  
+  font-size: 2em;
+  font-weight: 800; 
+  margin-bottom: 20px;
+}
+
+#week-products .carousel-item img {
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out; 
+}
+
+#week-products .carousel-item img:hover {
+    transform: scale(1.05); /* при наведении */
+}
+
+/*тили для изображений бургера и пиццы*/
+main .img-fluid {
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+/*товары недели*/
+#week-products {
+  background-color: #ffce56;
+  border-radius: 20px; /*углы*/
+  padding: 10px 20px;
+  transition: background-color 0.3s ease-in-out;
+ 
+}
