@@ -1,5 +1,3 @@
-
-
 body {
   font-family: 'Roboto', sans-serif; 
   color: #ffce56; 
@@ -10,11 +8,10 @@ body {
 }
 
 .container {
-  
-  background-color: #333; 
+  background-color: #333333; 
   padding: 30px;
   margin-top: 10px;
-  border-radius: 8px; /*скругленныеуголки*/
+  border-radius: 20px; /*скругленныеуголки*/
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* заметная тень */
 }
 
@@ -25,6 +22,8 @@ h1 {/*заголовок*/
   text-align: center;
   margin-bottom: 15px;
 }
+
+
 
 h2 {/*заголовок*/
   font-size: 2em; 
@@ -51,22 +50,25 @@ a:hover {
   color: #ffce56; 
 }
 
+/*ВСЕКНОПКИ*/
 .btn-primary {
   background-color: #f5d765; 
-  border-color: #f5d765;
+  border-color: #000000;
+  border-width: 2px;
+  color:black;
   font-weight: bold; 
-  border-radius: 30px; /* углы */
-  padding: 20px 50px;
-  transition: background-color 0.3s ease-in-out;
+  border-radius: 30px; /*углы*/
+  padding: 10px 53px;
 }
 
+/*наведение на кнопку*/
 .btn-primary:hover {
   background-color: #ffce56; 
   border-color: #ffce56;
 }
 
 .text-center h2 {
-  
+
   font-size: 2em;
   font-weight: 800; 
   margin-bottom: 20px;
@@ -76,11 +78,11 @@ a:hover {
     height: 250px;
     object-fit: cover;
     border-radius: 8px;
-    transition: transform 0.3s ease-in-out; 
+    transition: transform 0.3s ease-in-out; /*увеличение в карусели картинок сама анимация???*/
 }
 
 #week-products .carousel-item img:hover {
-    transform: scale(1.05); /* при наведении */
+    transform: scale(1.05); /*эта штука вроде увеличивает ничего не поняла но вроде да*/
 }
 
 /*тили для изображений бургера и пиццы*/
@@ -92,8 +94,8 @@ main .img-fluid {
 /*товары недели*/
 #week-products {
   background-color: #ffce56;
-  border-radius: 20px; /*углы*/
-  padding: 10px 20px;
-  transition: background-color 0.3s ease-in-out;
- 
+  border-radius: 50px; /*углы*/
+  padding: 0px 20px;
+  margin: 0 50px;
 }
+
