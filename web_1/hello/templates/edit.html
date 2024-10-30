@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
- <meta charset="utf-8" />
- <title>Модели в Django</title>
-</head>
+{% extends "firstapp/base.html" %}
+{% block title %}Формы{% endblock title %}
+{% block header %}Изучаем формы Django{% endblock header %}
+{% block content %}
 <body class="container">
  <form method="POST">
  {% csrf_token %}
@@ -18,4 +16,4 @@
  <input type="submit" value="Сохранить" >
  </form>
 </body>
-</html>
+{% endblock content %}
