@@ -4,9 +4,6 @@ from django.http import *
 from .models import Person
 
 
-def index(request):
- return HttpResponse("<h2>Глaвнaя</h2>")
-
 def about(request):
  return HttpResponse("<h2>О сайте</h2>")
 
@@ -21,8 +18,7 @@ def users(request, id=1, name='Максим'):
  output = "<h2>Пользователь</h2><h3>id: {0}. Имя: {1}</h3>".format(id, name)
  return HttpResponse(output)
 
-def index(request):
- return HttpResponse("Index")
+
 
 def about(request):
  return HttpResponse("About")
@@ -33,16 +29,8 @@ def contact(request):
 def details(request):
  return HttpResponsePermanentRedirect("/")
 
-def index(request):
- return render(request, "firstapp/index.html")
 
-def index(request):
- cat = ["Хлеб", "Булочка", "Пампушка", "Сдоба", "Ромбаба"]
- return render(request, "firstapp/index.html", context={"cat": cat})
 
-def index(request):
- userform = UserForm()
- return render(request, "firstapp/index.html", {"form": userform})
 
 def index(request):
  if request.method == "POST":
@@ -54,9 +42,6 @@ def index(request):
     userform = UserForm()
     return render(request, "firstapp/index.html", {"form": userform})
  
-def index(request):
- userform = UserForm()
- return render(request, "firstapp/index.html", {"form": userform})
 
 def index(request):
  userform = UserForm()
@@ -67,9 +52,7 @@ def index(request):
       return HttpResponse("<h2>Имя введено коррректно –{0}</h2>".format(name))
  return render(request, "firstapp/index.html", {"form": userform})
 
-def index(request):
- people = Person.objects.all()
- return render(request, "index.html", {"people": people})
+
 
 def create(request):
  if request.method == "POST":

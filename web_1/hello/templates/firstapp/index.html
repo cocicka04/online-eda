@@ -3,20 +3,20 @@
 {% block header %}Изучаем формы Django{% endblock header %}
 {% block content %}
 
-</head>
-<body class="container">
-<h2>Стилизация полей</h2>
  <form method="POST">
  {% csrf_token %}
  <div>
  {% for field in form %}
- <div class="row">
+ <div class="text-center">
  {{field.label_tag}}
- <div class="col-md-10">{{field}}</div>
+ <div class="text-center">{{field}}
  </div>
  {% endfor %}
  </div>
+ <div class="row"> </div>
  <input type="submit" value="Отправить" >
+ </div>
  </form>
-</body>
-</html>
+ </div>
+
+{% endblock content %}
