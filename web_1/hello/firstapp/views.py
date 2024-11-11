@@ -1,7 +1,84 @@
 from .forms import UserForm
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import *
 from .models import Person
+from .models import File
+from .forms import FileForm
+
+
+
+
+
+# загрузка аудио файлов
+# def form_up_audio(request):
+#  if request.method == 'POST':
+#   form = AudioForm(request.POST, request.FILES)
+#   if form.is_valid():
+#     form.save()
+#  my_text = 'Загруженные аудио файлы'
+#  form = AudioForm()
+#  file_obj = AudioFile.obj_audio.all()
+#  context = {'my_text': my_text, "file_obj": file_obj, "form": form}
+#  return render(request, 'firstapp/form_up_audio.html', context)
+# # удаление аудио файлов из БД
+# def delete_audio(request, id):
+#   try:
+#     audio = AudioFile.obj_audio.get(id=id)
+#     audio.delete()
+#     return redirect('form_up_audio')
+#   except Person.DoesNotExist:
+#     return HttpResponseNotFound("<h2>Объект не найден</h2>")
+# # загрузка видео файлов
+# def form_up_video(request):
+#  if request.method == 'POST':
+#   form = VideoForm(request.POST, request.FILES)
+#   if form.is_valid():
+#     form.save()
+#  my_text = 'Загруженные видео файлы'
+#  form = VideoForm()
+#  file_obj = VideoFile.obj_video.all()
+#  context = {'my_text': my_text, "file_obj": file_obj, "form": form}
+#  return render(request, 'firstapp/form_up_video.html', context)
+# удаление видео файлов из БД
+# def delete_video(request, id):
+#   try:
+#     video = VideoFile.obj_video.get(id=id)
+#     video.delete()
+#     return redirect('form_up_video')
+#   except Person.DoesNotExist:
+#    return HttpResponseNotFound("<h2>Объект не найден</h2>")
+# загрузка файлов pdf
+def form_up_pdf(request):
+ if request.method == 'POST':
+  form = FileForm(request.POST, request.FILES)
+  if form.is_valid():
+    form.save()
+ my_text = 'Загруженные файлы'
+ form = FileForm()
+ file_obj = File.objects.all()
+ context = {'my_text': my_text, "file_obj": file_obj, "form": form}
+ return render(request, 'firstapp/form_up_pdf.html', context)
+# удаление файлов из БД
+def delete_pdf(request, id):
+ try:
+  pdf = File.objects.get(id=id)
+  pdf.delete()
+  return redirect('form_up_pdf')
+ except Person.DoesNotExist:
+  return HttpResponseNotFound("<h2>Объект не найден</h2>")
+ 
+def edit_form(request):
+ my_form = UserForm()
+ context = {"form": my_form}
+ return render(request, "firstapp/my_form.html", context)
+
+def my_form(request):
+ my_form = UserForm()
+ context = {"form": my_form}
+ return render(request, "firstapp/my_form.html", context)
+
+
+
 
 
 def about(request):
