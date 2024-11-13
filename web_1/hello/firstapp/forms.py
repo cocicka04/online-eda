@@ -2,6 +2,14 @@ from django import forms
 from .models import VideoFile # для работы с файлами видео
 from .models import File # для работы с файлами
 from .models import AudioFile # для работы с файлами аудио
+from .models import Person
+from .models import Image # для работы с изображениями
+
+class ImageForm(forms.ModelForm):
+ class Meta:
+    model = Image
+    fields = '__all__'
+ # fields = ['title', 'image']
 
 class AudioForm(forms.ModelForm):
  class Meta:
@@ -20,8 +28,9 @@ class VideoForm(forms.ModelForm):
     fields = '__all__'
 
 
-class UserForm(forms.Form):
- name = forms.CharField(label="Имя клиента",
- widget=forms.TextInput(attrs={"class": "myfield"}))
- age = forms.IntegerField(label="Возраст клиента",
- widget=forms.NumberInput(attrs={"class": "myfield"}))
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = Person
+        fields = ['name', 'age']
+
+

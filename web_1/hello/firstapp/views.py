@@ -8,6 +8,47 @@ from .models import VideoFile
 from .forms import VideoForm
 from .models import AudioFile
 from .forms import AudioForm
+from .models import Image
+from .forms import ImageForm
+
+def form_up_img(request):
+ if request.method == 'POST':
+  form = ImageForm(request.POST, request.FILES)
+  if form.is_valid():
+    form.save()
+ my_text = 'Загруженные изображения'
+ my_img = Image.obj_img.all()
+ form = ImageForm()
+ context = {'my_text': my_text, "my_img": my_img, "form": form}
+ return render(request, 'firstapp/form_up_img.html', context)
+
+def delete_img(request, id):
+ try:
+  img = Image.obj_img.get(id=id)
+  img.delete()
+  return redirect('form_up_img')
+ except Person.DoesNotExist:
+  return HttpResponseNotFound("<h2>Объект не найден</h2>")
+
+def index(request):
+ my_text = 'Изучаем модели Django'
+ people_kol = Person.object_person.count()
+ context = {'my_text': my_text, "people_kol": people_kol}
+ return render(request, "firstapp/index.html", context)
+
+def my_form(request):
+ if request.method == "POST": # пользователь отправил данные
+  form = UserForm(request.POST) # создание экземпляра формы
+  if form.is_valid(): # проверка валидности формы
+   form.save() # запись данных в БД
+ # остаемся на той же странице, обновляем форму
+ # Загрузить форму для ввода клиентов
+ my_text = 'Сведения о клиентах'
+ people = Person.object_person.all()
+ form = UserForm()
+ context = {'my_text': my_text, "people": people, "form": form}
+ return render(request, "firstapp/my_form.html", context)
+
 
 def form_up_audio(request):
  if request.method == 'POST':
@@ -71,15 +112,27 @@ def delete_pdf(request, id):
  except Person.DoesNotExist:
   return HttpResponseNotFound("<h2>Объект не найден</h2>")
  
-def edit_form(request):
- my_form = UserForm()
- context = {"form": my_form}
- return render(request, "firstapp/my_form.html", context)
+def edit_form(request, id):
+ person = Person.object_person.get(id=id)
+ # Если пользователь вернул отредактированные данные
+ if request.method == "POST":
+  person.name = request.POST.get("name")
+  person.age = request.POST.get("age")
+  person.save()
+  return redirect('my_form')
+ # Если пользователь отправляет данные на редактирование
+ data = {"person": person}
+ return render(request, "edit_form.html", context=data)
 
-def my_form(request):
- my_form = UserForm()
- context = {"form": my_form}
- return render(request, "firstapp/my_form.html", context)
+def delete(request, id):
+ try:
+  person = Person.object_person.get(id=id)
+  person.delete()
+  return redirect('my_form')
+ except Person.DoesNotExist:
+  return HttpResponseNotFound("<h2>Объект не найден</h2>")
+
+
 
 
 
@@ -91,13 +144,8 @@ def about(request):
 def contact(request):
  return HttpResponse("<h2>Koнтaкты</h2>")
 
-def products(request, productid=1):
- output = "<h2>Продукт № {0}</h2>".format(productid)
- return HttpResponse(output)
 
-def users(request, id=1, name='Максим'):
- output = "<h2>Пользователь</h2><h3>id: {0}. Имя: {1}</h3>".format(id, name)
- return HttpResponse(output)
+
 
 
 
@@ -121,7 +169,7 @@ def index(request):
     return HttpResponse(output)
  else:
     userform = UserForm()
-    return render(request, "firstapp/index.html", {"form": userform})
+    return render(request, "my_form.html", {"form": userform})
  
 
 def index(request):
@@ -135,32 +183,3 @@ def index(request):
 
 
 
-def create(request):
- if request.method == "POST":
-  klient = Person()
-  klient.name = request.POST.get("name")
-  klient.age = request.POST.get("age")
-  klient.save()
- return HttpResponseRedirect("/")
-
-def edit(request, id):
- try:
-  person = Person.objects.get(id=id)
-
-  if request.method == "POST":
-   person.name = request.POST.get("name")
-   person.age = request.POST.get("age")
-   person.save()
-   return HttpResponseRedirect("/")
-  else:
-   return render(request, "edit.html", {"person": person})
- except Person.DoesNotExist:
-   return HttpResponseNotFound("<h2>Клиент не найден</h2>")
- 
-def delete(request, id):
- try:
-   person = Person.objects.get(id=id)
-   person.delete()
-   return HttpResponseRedirect("/")
- except Person.DoesNotExist:
-   return HttpResponseNotFound("<h2>Клиент не найден</h2>")
