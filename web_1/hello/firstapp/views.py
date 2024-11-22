@@ -1,15 +1,9 @@
 from .forms import UserForm
 from django.shortcuts import redirect, render
 from django.http import *
-from .models import Person
-from .models import File
-from .forms import FileForm
-from .models import VideoFile
-from .forms import VideoForm
-from .models import AudioFile
-from .forms import AudioForm
-from .models import Image
-from .forms import ImageForm
+from .models import Person, File, AudioFile, Image, VideoFile
+from .forms import FileForm, VideoForm, AudioForm, ImageForm
+
 
 def form_up_img(request):
  if request.method == 'POST':
